@@ -1,17 +1,14 @@
 ![LDBC logo](ldbc-logo.png)
-# LDBC SNB Interactive v2 workload implementations
 
-[![Build Status](https://circleci.com/gh/ldbc/ldbc_snb_interactive_v2_impls.svg?style=svg)](https://circleci.com/gh/ldbc/ldbc_snb_interactive_v2_impls)
+# LDBC SNB Interactive workload implementations
 
-This repository contains reference implementations of the LDBC Social Network Benchmark's Interactive v2 workload.
-The design and implementation of the workload are described in the [TPCTC 2023 paper, "The LDBC Social Network Benchmark Interactive Workload v2: A Transactional Graph Query Benchmark with Deep Delete Operations"](https://ldbcouncil.org/docs/papers/ldbc-snb-interactive-v2-tpctc2023-preprint.pdf) by Püroja et al.
+[![Build Status](https://circleci.com/gh/ldbc/ldbc_snb_interactive_impls.svg?style=svg)](https://circleci.com/gh/ldbc/ldbc_snb_interactive_impls)
+
+This repository contains reference implementations of the LDBC Social Network Benchmark's Interactive workload. See details on the benchmark, see the [SIGMOD 2015 paper](https://homepages.cwi.nl/~boncz/snb-challenge/snb-sigmod.pdf), [specification on GitHub Pages](https://ldbcouncil.org/ldbc_snb_docs/), and [specification on arXiv](https://arxiv.org/pdf/2001.02299.pdf).
 
 To get started with the LDBC SNB benchmarks, check out our introductory presentation: [The LDBC Social Network Benchmark](https://docs.google.com/presentation/d/1NilxSrKQnFq4WzWMY2-OodZQ2TEksKzKBmgB20C_0Nw/) ([PDF](https://ldbcouncil.org/docs/presentations/ldbc-snb-2022-11.pdf)).
 
 ## Notes
-
-:warning: Audited runs are currently only possible with the [SNB Interactive v1.x version](https://github.com/ldbc/ldbc_snb_interactive_impls/tree/v1-dev).
-The new version of Interactive (with deletes and larger SFs) will be released in 2024.
 
 :warning: Please keep in mind the following when using this repository.
 
@@ -36,6 +33,7 @@ For detailed instructions, consult the READMEs of the projects.
 ## User's guide
 
 ### Building the project
+
 This project uses Java 17.
 
 To build the entire project, run:
@@ -54,7 +52,7 @@ postgres/scripts/build.sh
 
 The benchmark framework relies on the following inputs produced by the [SNB Datagen's new (Spark) version](https://github.com/ldbc/ldbc_snb_datagen_spark/).
 
-Currently, the initial data set, update streams, and parameters can be generated with the following command:
+Currently, the initial data set, update streams, and parameters can generated with the following command:
 
 ```bash
 export SF= #The scale factor to generate
@@ -68,7 +66,7 @@ export USE_DATAGEN_DOCKER=true
 scripts/generate-all.sh
 ```
 
-### Pre-generated data sets
+### Pre-generate data sets
 
 [Pre-generated SF1-SF300 data sets](snb-interactive-pre-generated-data-sets.md) are available.
 
@@ -130,9 +128,12 @@ The implementation process looks roughly as follows:
 1. Test the implementation against the reference implementations using various scale factors.
 1. Optimize the implementation.
 
-## Audited runs
+## Preparing for an audited run
 
-Implementations of the Interactive workload can be [audited](https://ldbcouncil.org/benchmarks/snb-interactive/) by a certified LDBC auditor.
+Implementations of the Interactive workload can be audited by a certified LDBC auditor.
 The [Auditing Policies chapter of the specification](https://ldbcouncil.org/ldbc_snb_docs/ldbc-snb-specification.pdf) describes the auditing process and the required artifacts.
 
-If you plan to get your system audited, please reach out to the [LDBC Board of Directors](https://ldbcouncil.org/leadership/).
+If you plan to get your system audited, please reach to the [LDBC Steering Committee](https://ldbcouncil.org/organizational-members/).
+
+:warning: Audited runs are currently only possible with the [v1.x version](https://github.com/ldbc/ldbc_snb_interactive_impls/tree/v1-dev).
+The new version of Interactive (with deletes and larger SFs) will be released in Q2 2023.

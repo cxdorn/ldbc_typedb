@@ -24,14 +24,13 @@ export LDBC_SNB_IMPLS_DIR=`pwd`
 USE_DATAGEN_DOCKER=${USE_DATAGEN_DOCKER:-false}
 # set DATAGEN_COMMAND
 if ${USE_DATAGEN_DOCKER}; then
-    export DOCKER_IMAGE=ldbc/datagen-standalone:0.5.1-2.12_spark3.2
-    echo "Using Datagen Docker image ${DOCKER_IMAGE}"
-    DATAGEN_COMMAND="docker run --volume ${LDBC_SNB_DATAGEN_DIR}/out-sf${SF}:/out ${DOCKER_IMAGE} --cores $(nproc) --parallelism $(nproc) --memory ${LDBC_SNB_DATAGEN_MAX_MEM} --"
+    echo "Using Datagen Docker image"
+    DATAGEN_COMMAND="docker run --volume ${LDBC_SNB_DATAGEN_DIR}/out-sf${SF}:/out ldbc/datagen-standalone:0.5.1-2.12_spark3.2 --cores 4 --parallelism 4 --memory ${LDBC_SNB_DATAGEN_MAX_MEM} --"
 else
-    echo "Using non-containerized Datagen in directory ${LDBC_SNB_DATAGEN_DIR}"
+    echo "Using non-containerized Datagen"
     cd ${LDBC_SNB_DATAGEN_DIR}
     export LDBC_SNB_DATAGEN_JAR=$(sbt -batch -error 'print assembly / assemblyOutputPath')
-    DATAGEN_COMMAND="tools/run.py --cores $(nproc) --parallelism $(nproc) --memory ${LDBC_SNB_DATAGEN_MAX_MEM} -- --output-dir ${LDBC_SNB_DATAGEN_DIR}/out-sf${SF}"
+    DATAGEN_COMMAND="tools/run.py --cores 4 --parallelism 4 --memory ${LDBC_SNB_DATAGEN_MAX_MEM} -- --output-dir ${LDBC_SNB_DATAGEN_DIR}/out-sf${SF}"
 fi
 
 cd ${LDBC_SNB_IMPLS_DIR}
