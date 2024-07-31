@@ -12,11 +12,11 @@ public class PostgresInteractiveTest extends InteractiveTest {
         super(new PostgresInteractiveDb());
     }
 
-    String endpoint = "localhost:5432";
+    String endpoint = "jdbc:postgresql://localhost:5432/ldbcsnb";
     String user = "postgres";
     String password = "mysecretpassword";
     String databaseName = "ldbcsnb";
-    String jdbcDriver = "org.postgresql.ds.PGPoolingDataSource";
+    String jdbcDriver = "org.postgresql.Driver";
     String queryDir = "queries";
 
     public Map<String, String> getProperties() {
@@ -32,5 +32,4 @@ public class PostgresInteractiveTest extends InteractiveTest {
         properties.put("queryDir", queryDir);
         return properties;
     }
-
 }
