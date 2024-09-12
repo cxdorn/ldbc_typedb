@@ -1,5 +1,6 @@
 package postgresql;
 
+import org.junit.Test;
 import org.ldbcouncil.snb.impls.workloads.interactive.InteractiveTest;
 import org.ldbcouncil.snb.impls.workloads.postgres.interactive.PostgresInteractiveDb;
 
@@ -31,5 +32,10 @@ public class PostgresInteractiveTest extends InteractiveTest {
         properties.put("printQueryResults", "true");
         properties.put("queryDir", queryDir);
         return properties;
+    }
+
+    @Test
+    public void runTestQuery2() throws Exception {
+        testQuery2();
     }
 }
